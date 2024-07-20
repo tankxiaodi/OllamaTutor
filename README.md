@@ -34,6 +34,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
    https://www.assemblyai.com/dashboard/signup
 
    - Google Cloud Text-to-Speech 的凭证（可选，强烈推荐，TTS语音效果好）
+   https://cloud.google.com/speech-to-text
    
    - Azure Text-to-Speech 的订阅密钥（可选）
 
@@ -57,9 +58,14 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
 
 ## 使用方法
 
-运行 `python3 main.py` 启动程序。程序会初始化 LLM 并开始说第一句话。用户在听到提示音后可通过麦克风与 LLM 进行交流。用户对话结束时，请明确说出结束语 "That's it"。说出"That's it"非常重要，否则LLM会一直等待...
+运行 `python3 main.py` 启动程序。如果一切配置正确，程序会初始化 LLM 并开始说第一句话。
+用户在听到提示音后可通过麦克风与 LLM 进行交流。用户一轮对话结束时，请明确说出结束语 "That's it"。
+
+说出"That's it"非常重要，否则LLM会一直等待...
 
 在对话中，LLM 将根据用户提供的教材内容进行引导，帮助用户练习语言。
+
+如果发现LLM的对话不够专业，或是不够准确，请考虑使用更加清晰，明确的教材，或使用更高性能的LLM。
 
 ## 自定义教材
 
@@ -67,6 +73,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
 
 例如:
 https://www.bbc.co.uk/learningenglish/english/features/6-minute-english
+
 https://engoo.com/app/daily-news/article/how-you-quit-your-job-matters-heres-how-to-do-it-right/WNJ9MiArEeyVYVN-4pWeQA
 
 用户可拷贝文章的文字内容保存至 `context` 目录下的文本文件中，并在 `constants.py` 文件中更新 `CONTEXT_FILE` 变量指向该文件。
@@ -84,7 +91,9 @@ CONTEXT_FILE = "context/my_textbook.txt" # 定义自己的教材
 ## 运行环境
 
 代码已在 macOS 环境下测试通过。
-我的开发环境是: Macbook Pro 2019 M1 Max 64GB和gemma2:27b模型
+
+我的开发环境是: Macbook Pro 2019 M1 Max 64GB和gemma2:27b模型。
+
 理论上也支持 Windows 系统。
 
 ## 如何贡献
