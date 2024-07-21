@@ -4,6 +4,7 @@ import subprocess
 import platform
 import threading
 import os
+import time
 if platform.system() == 'Windows':
     import winsound
 from constants import *
@@ -41,6 +42,8 @@ class AI_Assistant:
         ]
         #
         self.transcripted_text = '' # 累计本次人类说话
+        #
+        self.last_asr_updated_time = 0
         
     def play_sound_async(self):
         threading.Thread(target=self.play_sound).start()
@@ -77,12 +80,10 @@ class AI_Assistant:
         if self.transcriber:
             self.transcriber.close()
             self.transcriber = None
-        if self.timer:
-            self.timer.cancel()
       
 
     def on_open(self, session_opened: aai.RealtimeSessionOpened):
-        #print("Session ID:", session_opened.session_id)
+        # ASR启动, 等待用户说话
         self.play_sound_async()
         self.transcripted_text = ''
         return
@@ -93,10 +94,12 @@ class AI_Assistant:
             return
         
         if isinstance(transcript, aai.RealtimeFinalTranscript):
+            self.last_asr_updated_time = time.time()
             print(transcript.text)
             self.transcripted_text += transcript.text # 累计转录句子
             if check_end_of_speech(self.transcripted_text.strip()):
                 # 若遇到结束语，处理转录
+                self.stop_transcription()
                 self.process_speech()
                 return
         else:
@@ -131,8 +134,7 @@ class AI_Assistant:
     
 ###### Step 3: Pass real-time transcript to LLM ######
     def generate_ai_response(self, transcripted_text):
-        self.stop_transcription()
-
+        
         self.full_transcript.append({"role":"user", "content":transcripted_text})
         print(f"\nUser:{transcripted_text}", end="\r\n")
 
