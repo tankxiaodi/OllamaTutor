@@ -1,14 +1,14 @@
 # OllamaTutor
 
 OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语言模型（LLM），通过实时语音对话帮助用户提高多种语言的口语能力。
+特别是针对特定教程，特定主题的对话训练。
 
 ## 主要特性
 
-- 实时与 LLM 进行语音对话
-- 可根据自定义教材设定对话主题
-- 可定制 LLM 性格和语气
-- 支持雅思英语口语考试训练
-- 支持多种 Ollama 模型，如 Llama3、Gemma2 等
+- 实时与 LLM 进行语音口语训练
+- 可根据自定义教材，自定义主题进行训练，比如针对"介绍自己的职业”的主题进行训练
+- 可定制 LLM 性格和语气，语言习惯等...
+- 支持多种 Ollama 开源LLM模型，如 Llama3、Gemma2 等
 - 集成多种文本转语音（TTS）技术
 
 ## 安装说明
@@ -58,12 +58,12 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
 
 ## 使用方法
 
-运行 `python3 main.py` 启动程序。如果一切配置正确，程序会初始化 LLM 并开始说第一句话。
+运行 `python3 main.py` 启动程序。如果一切配置正确，程序会初始化， LLM 并开始说第一句话。
 用户在听到提示音后可通过麦克风与 LLM 进行交流。用户一轮对话结束时，请明确说出结束语 "That's it"。
 
 说出"That's it"非常重要，否则LLM会一直等待...
 
-在对话中，LLM 将根据用户提供的教材内容进行引导，帮助用户练习语言。
+在对话中，LLM 将根据用户提供的教材内容进行教学，帮助用户练习语言。
 
 如果发现LLM的对话不够专业，或是不够准确，请考虑使用更加清晰，明确的教材，或使用更高性能的LLM。
 
@@ -74,9 +74,10 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
 例如:
 https://www.bbc.co.uk/learningenglish/english/features/6-minute-english
 
-https://engoo.com/app/daily-news/article/how-you-quit-your-job-matters-heres-how-to-do-it-right/WNJ9MiArEeyVYVN-4pWeQA
+https://engoo.com/app/materials/en
 
-用户可拷贝文章的文字内容保存至 `context` 目录下的文本文件中，并在 `constants.py` 文件中更新 `CONTEXT_FILE` 变量指向该文件。
+用户需拷贝文章的文字内容保存至 `context` 目录下的文本文件中，并在 `constants.py` 文件中更新 `CONTEXT_FILE` 变量指向该文件。
+LLM即可使用该文件为教材。
 
 ## 配置
 
