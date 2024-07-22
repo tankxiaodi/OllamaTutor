@@ -112,6 +112,8 @@ AI_NAME = "Sarah" # AI名字
 
 ```
 
+如果需要，也可以使用OpenAI的模型代替Ollama。在环境变量中加入OPENAI=True，并且设定OPENAI_API_KEY即可。
+
 ## 运行环境
 
 代码已在 macOS 环境下测试通过。
