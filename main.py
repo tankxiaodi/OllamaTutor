@@ -14,6 +14,7 @@ from prompt import *
 from GoogleTTSClient import *
 from EdgeTTSClient import *
 from AzureTTSClient import *
+from LLM import *
 
 
 
@@ -38,6 +39,7 @@ class AI_Assistant:
             print("Please set TTS api")
 
         self.transcriber = None
+        
         sys_prompt = generate_sys_prompt()
         print("system prompt: " + sys_prompt)
         # 初始化和AI的聊天记录
@@ -48,6 +50,11 @@ class AI_Assistant:
         self.transcripted_text = '' # 累计本次人类说话
         #
         self.last_asr_updated_time = 0
+        # 
+        if os.getenv('OPENAI') == 'True':
+            self.use_openai = True
+        else:
+            self.use_openai = False
         
     def play_sound_async(self):
         threading.Thread(target=self.play_sound).start()
@@ -144,22 +151,26 @@ class AI_Assistant:
 
         model_name = os.getenv('MODEL_NAME')
         model_num_ctx = int(os.getenv('MODEL_NUM_CTX'))
-        ollama_stream = ollama.chat(
+
+        my_stream = MyLLM.chat(
             model=model_name,
             messages=self.full_transcript,
-            stream=True,
             options={
-                    "num_ctx": model_num_ctx
+                "num_ctx": model_num_ctx
             },
-            keep_alive=300 # Ollama模型保活时间
+            keep_alive=300,
+            use_openai=self.use_openai
         )
 
         print(AI_NAME + ":", end="")
 
         text_buffer = ""
         full_text = ""
-        for chunk in ollama_stream:
-            text_buffer += chunk['message']['content']
+        for chunk in my_stream:
+            if self.use_openai:
+                text_buffer += chunk.content
+            else:
+                text_buffer += chunk
             
             if text_buffer.endswith('.'):
                 text_buffer = text_buffer.strip()

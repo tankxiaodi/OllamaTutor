@@ -8,7 +8,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
 - 实时与 LLM 进行语音口语训练
 - 可根据自定义教材，自定义主题进行训练，比如针对"介绍自己的职业”的主题进行训练
 - 可定制 LLM 性格和语气，语言习惯等...
-- 支持多种 Ollama 开源LLM模型，如 Llama3、Gemma2 等
+- 支持本地部署的Ollama 开源LLM模型，如 Llama3、Gemma2 等...充分保护数据隐私
 - 集成多种文本转语音（TTS）技术
 
 ## 安装说明
@@ -104,11 +104,11 @@ LLM即可使用该文件为教材。
 
 ## 配置
 
-编辑 `constants.py` 文件以自定义 LLM 和对话上下文等参数。例如：
+编辑.env环境变量可以调整常用的参数， 而编辑 `constants.py` 文件可以定义高级参数。例如：
 ```
-TTS_API = "Google" # 定义较好的TTS
-MODEL_NAME = "gemma2:27b" # 定义更大的LLM
-CONTEXT_FILE = "context/my_textbook.txt" # 定义自己的教材
+ # AI使用的语言
+AI_LANGUAGE = "English"
+AI_NAME = "Sarah" # AI名字
 
 ```
 
