@@ -5,6 +5,7 @@ import platform
 import threading
 import os
 import time
+from dotenv import load_dotenv
 if platform.system() == 'Windows':
     import winsound
 from constants import *
@@ -22,16 +23,19 @@ class AI_Assistant:
         if not assemblyai_api_key:
                 raise ValueError("Assemblyai API key not found in environment variables")
         aai.settings.api_key = assemblyai_api_key
-        if TTS_API == 'Google':
+        tts_api = os.getenv('TTS_API')
+        if tts_api == 'Google':
             self.tts_client = GoogleTTSClient()
-        elif TTS_API == 'Edge':
+        elif tts_api == 'Edge':
             self.tts_client = EdgeTTSClient()
-        elif TTS_API == 'Azure':
+        elif tts_api == 'Azure':
             azure_subscription_key = os.getenv('AZURE_SUBSCRIPTION_KEY')
             azure_region = os.getenv('AZURE_REGION')
             if not azure_subscription_key or not azure_region:
                 raise ValueError("Azure credentials not found in environment variables")
             self.tts_client = AzureTTSClient(azure_subscription_key, azure_region)
+        else:
+            print("Please set TTS api")
 
         self.transcriber = None
         sys_prompt = generate_sys_prompt()
@@ -138,14 +142,16 @@ class AI_Assistant:
         self.full_transcript.append({"role":"user", "content":transcripted_text})
         print(f"\nUser:{transcripted_text}", end="\r\n")
 
+        model_name = os.getenv('MODEL_NAME')
+        model_num_ctx = int(os.getenv('MODEL_NUM_CTX'))
         ollama_stream = ollama.chat(
-            model=MODEL_NAME,
+            model=model_name,
             messages=self.full_transcript,
             stream=True,
             options={
-                    "num_ctx": MODEL_NUM_CTX  # 或者你想要的其他值
+                    "num_ctx": model_num_ctx
             },
-            keep_alive=300
+            keep_alive=300 # Ollama模型保活时间
         )
 
         print(AI_NAME + ":", end="")
@@ -175,6 +181,7 @@ class AI_Assistant:
 
 
 if __name__ == '__main__':
-    
+    # 加载 .env 文件中的环境变量
+    load_dotenv()
     ai_assistant = AI_Assistant()
     ai_assistant.process_speech(True) # 启动AI对话

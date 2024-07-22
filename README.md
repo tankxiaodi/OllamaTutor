@@ -28,6 +28,17 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
    ```
    pip install -r requirements.txt
    ```
+   
+   如果是macOS的话，还需要安装：
+   ```
+   brew install portaudio
+   brew install mpv
+   ```
+
+   如果是Debian/Ubuntu：
+   ```
+   apt install portaudio19-dev
+   ```
 
 4. 获取并配置API 密钥：
    - AssemblyAI 的 API 密钥（必需，100小时免费额度）
@@ -42,12 +53,22 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
 5. 在项目根目录下创建 `.env` 文件，安装如下格式，填写上述 API 密钥和凭证信息。
 
    ```
+    # 使用的tts, 填 Google 或 Edge , Azure
+    # Google 语音最自然, 但需要配置CREDENTIAL
+    TTS_API=Edge
+
     ASSEMBLYAI_API_KEY=your_ASSEMBLYAI_API_KEY  (必填)
 
     GOOGLE_APPLICATION_CREDENTIALS=your_CREDENTIALS_json_file_path (可选)
 
     AZURE_SUBSCRIPTION_KEY=your_AZURE_SUBSCRIPTION_KEY (可选)
     AZURE_REGION=your_AZURE_REGION (可选)
+
+    CONTEXT_FILE=context/Have_Friends_at_Work.txt
+
+    # AI模型参数
+    MODEL_NAME=gemma2
+    MODEL_NUM_CTX=8192
     ```
 
 6. 安装 Ollama 并下载所需的模型：
@@ -97,7 +118,7 @@ CONTEXT_FILE = "context/my_textbook.txt" # 定义自己的教材
 
 我的开发环境是: Macbook Pro 2019 M1 Max 64GB和gemma2:27b模型。
 
-理论上也支持 Windows 系统。
+理论上也支持 Windows和Debian/Ubuntu。
 
 ## 如何贡献
 
