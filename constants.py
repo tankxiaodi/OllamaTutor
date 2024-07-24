@@ -1,5 +1,3 @@
-from prompt import * 
-
 
 # google tts 参数
 GOOGLE_TTS_LANGUAGE_CODE = "en-US" # tts语言
@@ -14,9 +12,6 @@ AZURE_TTS_STYLE_DEGREE = 2.0 # 风格强度
 # edge tts语音类型
 EDGE_TTS_VOICE = 'en-US-JennyNeural' 
 
-
- # 用系统提示定义AI的角色
-SYS_PROMPT = LANGUAGE_TUTOR_PROMPT
 
  # AI使用的语言
 AI_LANGUAGE = "English"

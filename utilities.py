@@ -2,7 +2,6 @@
 import re
 import os
 from constants import *
-from prompt import *
 
 
 def generate_sys_prompt():
@@ -14,7 +13,11 @@ def generate_sys_prompt():
         context = f.read()
 
     # 填充内容
-    prompt = SYS_PROMPT.replace("{AI_NAME}", AI_NAME)
+    sys_prompt_file = os.getenv('SYS_PROMPT')
+    sys_prompt_path = os.path.join(script_dir, sys_prompt_file)
+    with open(sys_prompt_path, "r", encoding="utf-8") as f:
+        sys_prompt = f.read()
+    prompt = sys_prompt.replace("{AI_NAME}", AI_NAME)
     prompt = prompt.replace("{AI_LANGUAGE}", AI_LANGUAGE)
     prompt = prompt.replace("{CONTEXT}", context)
 

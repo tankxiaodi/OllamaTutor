@@ -10,7 +10,6 @@ if platform.system() == 'Windows':
     import winsound
 from constants import *
 from utilities import *
-from prompt import *
 from GoogleTTSClient import *
 from EdgeTTSClient import *
 from AzureTTSClient import *
