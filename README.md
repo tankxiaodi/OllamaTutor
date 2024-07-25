@@ -18,10 +18,10 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
    git clone https://github.com/tankxiaodi/OllamaTutor.git
    ```
 
-2. 创建并激活 Python 虚拟环境（可选，推荐）：
+2. 创建并激活 Python 虚拟环境：
    ```
-   python3 -m venv --system-site-packages ./venv
-   source venv/bin/activate
+   conda create --name ollama_tutor python=3.10
+   conda activate ollama_tutor
    ```
 
 3. 安装依赖项：
@@ -29,10 +29,15 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
    pip install -r requirements.txt
    ```
    
-   如果是macOS的话，还需要安装：
+   如果是macOS，需要安装：
    ```
    brew install portaudio
    brew install mpv
+   ```
+   
+   如果是Windows，需要安装：
+   ```
+   conda install ffmpeg
    ```
 
    如果是Debian/Ubuntu：
@@ -67,6 +72,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
     CONTEXT_FILE=context/Have_Friends_at_Work.txt
 
     # AI模型参数
+    SYS_PROMPT=prompt/prompt.txt
     MODEL_NAME=gemma2
     MODEL_NUM_CTX=8192
     ```
