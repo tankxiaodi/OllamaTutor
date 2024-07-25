@@ -21,7 +21,7 @@ def generate_sys_prompt():
     prompt = prompt.replace("{AI_LANGUAGE}", AI_LANGUAGE)
     prompt = prompt.replace("{CONTEXT}", context)
 
-    return prompt
+    return prompt.strip()
 
 def check_end_of_speech(text):
     # 检查是否以 "that's it" 后跟标点符号结尾，不区分大小写
