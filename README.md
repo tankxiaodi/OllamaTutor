@@ -33,6 +33,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
    ```
    brew install portaudio
    brew install mpv
+   brew install ffmpeg
    ```
    
    如果是Windows，需要安装：

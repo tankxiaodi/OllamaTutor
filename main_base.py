@@ -1,5 +1,4 @@
 import assemblyai as aai
-import ollama
 import subprocess
 import platform
 import threading
