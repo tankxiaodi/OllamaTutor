@@ -1,5 +1,4 @@
 import assemblyai as aai
-import ollama
 import subprocess
 import platform
 import threading
@@ -13,6 +12,7 @@ from utilities import *
 from GoogleTTSClient import *
 from EdgeTTSClient import *
 from AzureTTSClient import *
+from DeepgramTTSClient import *
 from LLM import *
 
 
@@ -34,6 +34,8 @@ class AI_Assistant:
             if not azure_subscription_key or not azure_region:
                 raise ValueError("Azure credentials not found in environment variables")
             self.tts_client = AzureTTSClient(azure_subscription_key, azure_region)
+        elif tts_api == 'Deep':
+            self.tts_client = DeepgramTTSClient()
         else:
             print("Please set TTS api")
 

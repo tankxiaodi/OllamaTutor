@@ -8,3 +8,4 @@ google-cloud-texttospeech
 azure-cognitiveservices-speech
 SpeechRecognition
 langchain_openai
+deepgram-sdk
