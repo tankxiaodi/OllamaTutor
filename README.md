@@ -70,6 +70,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
     AZURE_SUBSCRIPTION_KEY=your_AZURE_SUBSCRIPTION_KEY (可选)
     AZURE_REGION=your_AZURE_REGION (可选)
 
+    # 对话使用的教材
     CONTEXT_FILE=context/Have_Friends_at_Work.txt
 
     # AI模型参数
@@ -106,8 +107,8 @@ https://www.bbc.co.uk/learningenglish/english/features/6-minute-english
 
 https://engoo.com/app/materials/en
 
-用户需拷贝文章的文字内容保存至 `context` 目录下的文本文件中，并在 `constants.py` 文件中更新 `CONTEXT_FILE` 变量指向该文件。
-LLM即可使用该文件为教材。
+用户需拷贝文章的文字内容保存至 `context` 目录下的文本文件中，并在 `.env` 文件中设定 `CONTEXT_FILE` 环境变量，
+使用相对路径指向该文件。LLM即可使用该文件为教材。
 
 ## 配置
 
