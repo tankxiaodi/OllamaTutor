@@ -11,6 +11,7 @@ from constants import *
 from utilities import *
 from GoogleTTSClient import *
 from EdgeTTSClient import *
+from DeepgramTTSClient import *
 from BaseLLM import *
 
 
@@ -26,6 +27,8 @@ class AI_Assistant:
             self.tts_client = GoogleTTSClient()
         elif tts_api == 'Edge':
             self.tts_client = EdgeTTSClient()
+        elif tts_api == 'Deep':
+            self.tts_client = DeepgramTTSClient()
         else:
             print("Please set TTS api")
 

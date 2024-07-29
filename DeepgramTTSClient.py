@@ -50,9 +50,3 @@ class DeepgramTTSClient:
 
         except Exception as e:
             print(f"Error in play_stream: {e}")
-
-    def close(self):
-        if self.stream:
-            self.stream.stop_stream()
-            self.stream.close()
-        self.p.terminate()
