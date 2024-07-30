@@ -1,5 +1,7 @@
 from google.cloud import texttospeech
 import pyaudio
+from pydub import AudioSegment
+import io
 from constants import *
 
 class GoogleTTSClient:
@@ -12,7 +14,7 @@ class GoogleTTSClient:
             name=GOOGLE_TTS_NAME
         )
         self.audio_config = texttospeech.AudioConfig(
-            audio_encoding=texttospeech.AudioEncoding.LINEAR16,
+            audio_encoding=texttospeech.AudioEncoding.MP3,
             sample_rate_hertz=16000,
             speaking_rate=GOOGLE_TTS_SPEAKING_RATE
         )
@@ -24,20 +26,18 @@ class GoogleTTSClient:
                 input=synthesis_input, voice=self.voice, audio_config=self.audio_config
             )
             
-            audio_content = response.audio_content
+            # 将 MP3 数据转换为 PCM
+            audio = AudioSegment.from_mp3(io.BytesIO(response.audio_content))
+            pcm_data = audio.raw_data
             
             if self.stream is None:
-                self.stream = self.p.open(format=self.p.get_format_from_width(2),
-                                          channels=1,
-                                          rate=16000,
+                self.stream = self.p.open(format=self.p.get_format_from_width(audio.sample_width),
+                                          channels=audio.channels,
+                                          rate=audio.frame_rate,
                                           output=True)
             
-            # 跳过前1个音频块，防止爆音
-            chunk_size = 64
-            audio_content = audio_content[chunk_size:]
-            
             # 播放音频
-            self.stream.write(audio_content)
+            self.stream.write(pcm_data)
             
         except Exception as e:
             print(f"Error in play_stream: {e}")
