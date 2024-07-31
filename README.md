@@ -8,7 +8,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
 - 实时与 LLM 进行语音口语训练
 - 可根据自定义教材，自定义主题进行训练，比如"介绍自己的职业”
 - 可定制 LLM 性格和语气，语言习惯等...
-- 支持本地部署的Ollama 开源LLM模型，如 Llama3、Gemma2 等...充分保护数据隐私
+- 支持本地部署的Ollama 开源LLM模型，如 Llama3.1、Gemma2 等...充分保护数据隐私
 - 集成多种文本转语音（TTS）技术
 
 ## 安装说明
@@ -44,6 +44,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
    如果是Debian/Ubuntu：
    ```
    apt install portaudio19-dev
+   apt install ffmpeg
    ```
 
 4. 获取并配置API 密钥：
@@ -75,14 +76,14 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
 
     # AI模型参数
     SYS_PROMPT=prompt/prompt.txt
-    MODEL_NAME=gemma2
+    MODEL_NAME=llama3.1
     MODEL_NUM_CTX=8192
     ```
 
 6. 安装 Ollama 并下载所需的模型：
     https://ollama.com/
    ```
-   ollama run gemma2
+   ollama run llama3.1
    ```
 
 ## 使用方法
