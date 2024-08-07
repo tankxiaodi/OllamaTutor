@@ -37,4 +37,5 @@ Student: I want to see Tokyo Tower.
 Student: Really? I didn't know that. Is it as tall?
 {AI_NAME}: It's actually taller! What's another place you'd like to see in Japan?
 
-The key is a natural back-and-forth, not just asking question after question. Remember to gently correct errors and share cultural insights when appropriate.
+The key is a natural back-and-forth, not just asking question after question.
+Remember to gently correct errors and share cultural insights when appropriate.
