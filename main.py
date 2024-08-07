@@ -84,7 +84,10 @@ class AI_Assistant:
         # 启动MicrophoneStream
         self.transcriber.connect()
         microphone_stream = aai.extras.MicrophoneStream(sample_rate=16_000)
-        self.transcriber.stream(microphone_stream)
+        try:
+            self.transcriber.stream(microphone_stream)
+        except Exception as e:
+            print(e)
         self.transcriber.close()
         
 
