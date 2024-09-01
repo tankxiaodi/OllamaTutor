@@ -57,7 +57,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
    - Azure Text-to-Speech 的订阅密钥（可选）
 
 
-5. 在项目根目录下创建 `.env` 文件，安装如下格式，填写上述 API 密钥和凭证信息。
+5. 把项目中的 `.env.sample` 文件改成 `.env`，按照如下格式，填写上述 API 密钥和凭证信息。
 
    ```
     # 使用的tts, 填 Google 或 Edge , Azure
@@ -75,7 +75,7 @@ OllamaTutor 是一个 AI 语言学习助手，采用 Ollama 支持的大型语�
     CONTEXT_FILE=context/Have_Friends_at_Work.txt
 
     # AI模型参数
-    SYS_PROMPT=prompt/prompt.txt
+    SYS_PROMPT=prompt/Sarah_prompt.txt
     MODEL_NAME=llama3.1
     MODEL_NUM_CTX=8192
     ```

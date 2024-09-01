@@ -31,6 +31,9 @@ class MyLLM:
     @staticmethod
     def stream_generator(stream):
         for chunk in stream:
-            yield chunk['message']['content']
+            token = chunk['message']['content']
+            # 替换所有的星号
+            token = token.replace('*', ' ')
+            yield token
     
     

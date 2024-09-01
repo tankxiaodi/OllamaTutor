@@ -1,13 +1,14 @@
 
 import re
 import os
+from urllib.parse import unquote
 from constants import *
 
 
 def generate_sys_prompt():
     # 构建context.txt的完整路径
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    context_file = os.getenv('CONTEXT_FILE')
+    context_file = unquote(os.getenv('CONTEXT_FILE'))
     context_path = os.path.join(script_dir, context_file)
     with open(context_path, "r", encoding="utf-8") as f:
         context = f.read()
