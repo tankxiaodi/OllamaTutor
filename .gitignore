@@ -163,3 +163,5 @@ cython_debug/
 /my_context
 /conversation_history
 /test
+/conversation_summary
+test_conversation_summary.py

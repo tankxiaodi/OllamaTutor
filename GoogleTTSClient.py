@@ -16,7 +16,7 @@ class GoogleTTSClient:
         self.audio_config = texttospeech.AudioConfig(
             audio_encoding=texttospeech.AudioEncoding.MP3,
             sample_rate_hertz=16000,
-            speaking_rate=GOOGLE_TTS_SPEAKING_RATE
+            #speaking_rate=GOOGLE_TTS_SPEAKING_RATE
         )
 
     def play_stream(self, text):
