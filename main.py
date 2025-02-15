@@ -114,10 +114,10 @@ class AI_Assistant:
         summary = generate_conversation_summary(formatted_transcript, AI_NAME)
         # 生成对话中角色关键信息
         user_key_info = generate_character_key_info(formatted_transcript, 'user', AI_NAME)
-        ai_key_info = generate_character_key_info(formatted_transcript, AI_NAME, AI_NAME)
+        #ai_key_info = generate_character_key_info(formatted_transcript, AI_NAME, AI_NAME)
         # 组合以上信息, 并保存对话总结
         summary['user'] = user_key_info
-        summary[AI_NAME] = ai_key_info
+        #summary[AI_NAME] = ai_key_info
         summary_path = save_conversation_summary(summary)
         print(f"对话总结已保存到: {summary_path}")
         
@@ -218,7 +218,7 @@ class AI_Assistant:
         else:
             # 初始问候
             print("LOADING MODEL...")
-            self.transcripted_text = "How are you, " + AI_NAME
+            self.transcripted_text = "Hello, " + AI_NAME
 
         self.generate_ai_response(self.transcripted_text)
         self.is_speaking = False
